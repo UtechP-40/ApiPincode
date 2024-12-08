@@ -1,24 +1,26 @@
 import React,{useState} from 'react'
 
-export default function Search({setData,daa}) {
-    // const [apiData,setApiData] = useState([])
-    async function lookup(e){
-        e.preventDefault()
-        console.log("hello1",daa)
-        const responce = await fetch("https://api.postalpincode.in/pincode/110063")
-        const data = await responce.json()
-        // console.log(data[0].PostOffice)
-        // setApiData(data)
-        setData(data)
+export default function Search({setPincode,data}) {
+    const [formValue,setFormValue] = useState("")
+    // const []
+    // console.log(data,"Search")
+    function lookup(e){
+      // setFormValue(formValue)
+      e.preventDefault();
+      // console.log(e.target)
+      setPincode(formValue)
     }
   return (
     <div>
+      
+      <div className='formDiv'>
       <h1 className='heading1'>Enter Pincode</h1>
       <form action="" onSubmit={lookup}>
-      <input className='pinCodeInput' type="text" required />
-      <button type="submit" >Lookup</button>
+      <input placeholder='Pincode' className='pinCodeInput' value={formValue} onChange={(e)=>{setFormValue(e.target.value);console.log(e.target)}} type="text" required />
+      <button className="btn1" type="submit" >Lookup</button>
       </form>
-      {daa[0]}
+      </div>
+      {/* {daa[0]} */}
     </div>
   )
 }
